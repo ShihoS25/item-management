@@ -12,30 +12,67 @@
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
-                       @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                       @endforeach
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
                     </ul>
                 </div>
             @endif
 
             <div class="card card-primary">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="name">名前</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="名前">
+                            <label for="image">商品画像<span class="badge badge-danger ml-2">必須</span></label>
+                            <input type="file" class="form-control-file" id="image" name="image">
                         </div>
 
                         <div class="form-group">
-                            <label for="type">種別</label>
-                            <input type="text" class="form-control" id="type" name="type" placeholder="種別">
+                            <label for="name">商品名<span class="badge badge-danger ml-2">必須</span></label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="item_number">品番<span class="badge badge-danger ml-2">必須</span></label>
+                            <input type="text" class="form-control" id="item_number" name="item_number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">カテゴリー<span class="badge badge-danger ml-2">必須</span></label>
+                            <select class="form-control" name="category">
+                                <option value="アウター" selected>アウター</option>
+                                <option value="トップス">トップス</option>
+                                <option value="ボトムス">ボトムス</option>
+                                <option value="シューズ">シューズ</option>
+                                <option value="小物">小物</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="size">サイズ<span class="badge badge-danger ml-2">必須</span></label>
+                            <select class="form-control" name="size">
+                                <option value="S" selected>S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">価格<span class="badge badge-danger ml-2">必須</span></label>
+                            <input type="text" class="form-control" id="price" name="price" placeholder="10,000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stock">在庫<span class="badge badge-danger ml-2">必須</span></label>
+                            <input type="number" min="0" max="50" value="50" class="form-control" id="stock" name="stock">
                         </div>
 
                         <div class="form-group">
                             <label for="detail">詳細</label>
-                            <input type="text" class="form-control" id="detail" name="detail" placeholder="詳細説明">
+                            <input type="text" class="form-control" id="detail" name="detail">
                         </div>
                     </div>
 

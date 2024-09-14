@@ -13,10 +13,16 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->index();
-            $table->string('name', 100)->index();
-            $table->string('type', 100)->nullable();
-            $table->string('detail', 500)->nullable();
+            $table->unsignedBigInteger('user_id')->index();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->longText('image');
+            $table->string('name');
+            $table->string('item_number')->unique();
+            $table->enum('category', ['アウター', 'トップス', 'ボトムス', 'シューズ', '小物'])->index();
+            $table->enum('size', ['S', 'M', 'L', 'XL', 'F']);
+            $table->string('price')->index();
+            $table->unsignedInteger('stock')->index();
+            $table->string('detail')->nullable();
             $table->timestamps();
         });
     }
