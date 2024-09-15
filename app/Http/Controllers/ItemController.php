@@ -14,7 +14,7 @@ class ItemController extends Controller
     public function index()
     {
         // 商品一覧取得
-        $items = Item::all();
+        $items = Auth::user()->items()->paginate(5);
         return view('item.index', compact('items'));
     }
 
@@ -28,13 +28,13 @@ class ItemController extends Controller
             // バリデーション
             $this->validate($request, [
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'name' => 'required|string',
-                'item_number' => 'required|string|unique:items,item_number',
+                'name' => 'required|string|max:100',
+                'item_number' => 'required|string|max:10|unique:items,item_number',
                 'category' => 'required|in:アウター,トップス,ボトムス,シューズ,小物',
                 'size' => 'required|in:S,M,L,XL,F',
-                'price' => 'required|string',
+                'price' => 'required|string|max:10',
                 'stock' => 'required|integer|min:0|max:50',
-                'detail' => 'nullable|string'
+                'note' => 'nullable|string|max:300'
             ]);
 
             // 画像をbase64エンコード
@@ -50,7 +50,7 @@ class ItemController extends Controller
                 'size' => $request->size,
                 'price' => $request->price,
                 'stock' => $request->stock,
-                'detail' => $request->detail,
+                'note' => $request->note,
             ]);
 
             return redirect('/items');
@@ -68,22 +68,19 @@ class ItemController extends Controller
         return view('item.edit', compact('item'));
     }
 
-    /**
-     * 商品情報更新
-     */
     public function update(Request $request, $id)
     {
         $item = Item::findOrFail($id);
 
         $this->validate($request, [
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'name' => 'required|string',
-            'item_number' => 'required|string|unique:items,item_number,' . $item->id,
+            'name' => 'required|string|max:100',
+            'item_number' => 'required|string|max:10|unique:items,item_number,' . $item->id,
             'category' => 'required|in:アウター,トップス,ボトムス,シューズ,小物',
             'size' => 'required|in:S,M,L,XL,F',
-            'price' => 'required|string',
+            'price' => 'required|string|max:10',
             'stock' => 'required|integer|min:0|max:50',
-            'detail' => 'nullable|string'
+            'note' => 'nullable|string|max:300'
         ]);
 
         // 画像が変更された場合
@@ -98,9 +95,19 @@ class ItemController extends Controller
         $item->size = $request->size;
         $item->price = $request->price;
         $item->stock = $request->stock;
-        $item->detail = $request->detail;
+        $item->note = $request->note;
         $item->save();
 
         return redirect('/items');
+    }
+
+    /**
+     * 商品削除
+     */
+    public function delete($id) {
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return redirect('/items')->with('success', '商品を削除しました。');
     }
 }

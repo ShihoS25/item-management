@@ -25,10 +25,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('items')->group(function () {
-        Route::get('/', [ItemController::class, 'index']);
-        Route::get('/add', [ItemController::class, 'add']);
-        Route::post('/add', [ItemController::class, 'add']);
-        Route::get('/{id}/edit', [ItemController::class, 'edit']);
-        Route::post('/{id}/edit', [ItemController::class, 'update']);
+        Route::get('/', [ItemController::class, 'index']);             // 商品一覧画面
+        Route::get('/add', [ItemController::class, 'add']);            // 商品登録画面
+        Route::post('/add', [ItemController::class, 'add']);           // 商品登録
+        Route::get('/{id}/edit', [ItemController::class, 'edit']);     // 商品編集画面
+        Route::post('/{id}/edit', [ItemController::class, 'update']);  // 商品編集
+        Route::get('/{id}/delete', [ItemController::class, 'delete']); // 商品削除
     });
 });

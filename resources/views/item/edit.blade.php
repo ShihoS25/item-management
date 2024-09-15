@@ -43,22 +43,22 @@
                         <div class="form-group">
                             <label for="category">カテゴリー</label>
                             <select class="form-control" name="category">
-                                <option value="アウター" {{ $item->category == 'outers' ? 'selected' : '' }}>アウター</option>
-                                <option value="トップス" {{ $item->category == 'tops' ? 'selected' : '' }}>トップス</option>
-                                <option value="ボトムス" {{ $item->category == 'bottoms' ? 'selected' : '' }}>ボトムス</option>
-                                <option value="シューズ" {{ $item->category == 'shoes' ? 'selected' : '' }}>シューズ</option>
-                                <option value="小物" {{ $item->category == 'accessories' ? 'selected' : '' }}>小物</option>
+                                <option value="アウター" {{ $item->category == 'アウター' ? 'selected' : '' }}>アウター</option>
+                                <option value="トップス" {{ $item->category == 'トップス' ? 'selected' : '' }}>トップス</option>
+                                <option value="ボトムス" {{ $item->category == 'ボトムス' ? 'selected' : '' }}>ボトムス</option>
+                                <option value="シューズ" {{ $item->category == 'シューズ' ? 'selected' : '' }}>シューズ</option>
+                                <option value="小物" {{ $item->category == '小物' ? 'selected' : '' }}>小物</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="size">サイズ</label>
                             <select class="form-control" name="size">
-                                <option value="S" {{ $item->size == 'small' ? 'selected' : '' }}>S</option>
-                                <option value="M" {{ $item->size == 'medium' ? 'selected' : '' }}>M</option>
-                                <option value="L" {{ $item->size == 'large' ? 'selected' : '' }}>L</option>
-                                <option value="XL" {{ $item->size == 'extra-large' ? 'selected' : '' }}>XL</option>
-                                <option value="F" {{ $item->size == 'free' ? 'selected' : '' }}>F</option>
+                                <option value="S" {{ $item->size == 'S' ? 'selected' : '' }}>S</option>
+                                <option value="M" {{ $item->size == 'M' ? 'selected' : '' }}>M</option>
+                                <option value="L" {{ $item->size == 'L' ? 'selected' : '' }}>L</option>
+                                <option value="XL" {{ $item->size == 'XL' ? 'selected' : '' }}>XL</option>
+                                <option value="F" {{ $item->size == 'F' ? 'selected' : '' }}>F</option>
                             </select>
                         </div>
 
@@ -73,8 +73,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="detail">詳細</label>
-                            <input type="text" class="form-control" id="detail" name="detail" value="{{ $item->detail }}">
+                            <label for="note">備考（300文字以内）</label><br>
+                            <textarea id="note" name="note" cols="75" rows="2" maxlength="300">{{ $item->note }}</textarea>
                         </div>
                     </div>
 

@@ -1,3 +1,26 @@
+table {
+    text-align: center;
+}
+
+td {
+    white-space: normal;
+}
+
 img {
     height: 100px;
+}
+
+a {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.item {
+    text-align: left;
+    font-size: smaller;
+} 
+
+.bg-warning {
+    background-color: #ffeeba !important;
 }

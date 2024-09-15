@@ -30,12 +30,12 @@
 
                         <div class="form-group">
                             <label for="name">商品名<span class="badge badge-danger ml-2">必須</span></label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="100文字以内">
                         </div>
 
                         <div class="form-group">
                             <label for="item_number">品番<span class="badge badge-danger ml-2">必須</span></label>
-                            <input type="text" class="form-control" id="item_number" name="item_number">
+                            <input type="text" class="form-control" id="item_number" name="item_number" placeholder="ABCD123456">
                         </div>
 
                         <div class="form-group">
@@ -62,7 +62,7 @@
 
                         <div class="form-group">
                             <label for="price">価格<span class="badge badge-danger ml-2">必須</span></label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder="10,000">
+                            <input type="text" class="form-control" id="price" name="price" placeholder="1,000,000">
                         </div>
 
                         <div class="form-group">
@@ -71,8 +71,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="detail">詳細</label>
-                            <input type="text" class="form-control" id="detail" name="detail">
+                            <label for="note">備考（300文字以内）</label><br>
+                            <textarea id="note" name="note" cols="75" rows="2" maxlength="300"></textarea>
                         </div>
                     </div>
 

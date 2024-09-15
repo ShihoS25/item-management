@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row justify-content-end mr-3">
-        <a href="{{ url('items/add') }}" class="btn-sm btn-success mb-3">商品登録</a>
+        <a href="{{ url('items/add') }}" class="btn-success btn-sm mb-3">商品登録</a>
     </div>
 
     <div class="row">
@@ -26,27 +26,26 @@
                                 <th>サイズ</th>
                                 <th>価格</th>
                                 <th>在庫</th>
-                                <th>詳細</th>
+                                <th>備考</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
-                                <tr>
+                                <tr class="{{ $item->stock <= 10 ? 'bg-warning' : '' }}">
                                     <td>{{ $item->id }}</td>
                                     <td><img src="data:image/jpeg;base64,{{ $item->image }}" alt="商品画像"></td>
-                                    <td>{{ $item->name }}</td>
+                                    <td class="item">{{ $item->name }}</td>
                                     <td>{{ $item->item_number }}</td>
                                     <td>{{ $item->category }}</td>
                                     <td>{{ $item->size }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->stock }}</td>
-                                    <td>{{ $item->detail }}</td>
-                                    <div class="btn-group">
-                                        <td>
-                                            <a href="items/{{$item->id}}/edit" class="btn-sm btn-info mb-3">編集</a>
-                                            <!-- <a href="{{ url('items/delete') }}" class="btn-sm btn-danger mb-3">削除</a> -->
-                                        </td>
-                                    </div>
+                                    <td class="item">{!!nl2br($item->note)!!}</td>
+                                    <td>
+                                        <a href="items/{{$item->id}}/edit" class="btn-primary btn-sm">編集</a>
+                                        <a href="items/{{$item->id}}/delete" class="btn-danger btn-sm">削除</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -54,6 +53,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {{ $items->links('pagination::bootstrap-4') }}
     </div>
 @stop
 

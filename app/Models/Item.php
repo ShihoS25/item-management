@@ -20,7 +20,7 @@ class Item extends Model
         'size',
         'price',
         'stock',
-        'detail'
+        'note'
     ];
 
     /**
@@ -38,4 +38,9 @@ class Item extends Model
      */
     protected $casts = [
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
