@@ -29,12 +29,13 @@ class ItemController extends Controller
             $this->validate($request, [
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'name' => 'required|string|max:100',
-                'item_number' => 'required|string|max:10|unique:items,item_number',
+                'item_number' => 'required|string|max:10|unique:items',
                 'category' => 'required|in:アウター,トップス,ボトムス,シューズ,小物',
                 'size' => 'required|in:S,M,L,XL,F',
-                'price' => 'required|string|max:10',
-                'stock' => 'required|integer|min:0|max:50',
-                'note' => 'nullable|string|max:300'
+                'material' => 'nullable|string|max:50',
+                'price' => 'required|integer|min:0|max:100000',
+                'stock' => 'required|integer|min:0|max:500',
+                'description' => 'nullable|string|max:500'
             ]);
 
             // 画像をbase64エンコード
@@ -48,9 +49,10 @@ class ItemController extends Controller
                 'item_number' => $request->item_number,
                 'category' => $request->category,
                 'size' => $request->size,
+                'material' => $request->material,
                 'price' => $request->price,
                 'stock' => $request->stock,
-                'note' => $request->note,
+                'description' => $request->description,
             ]);
 
             return redirect('/items');
@@ -78,9 +80,10 @@ class ItemController extends Controller
             'item_number' => 'required|string|max:10|unique:items,item_number,' . $item->id,
             'category' => 'required|in:アウター,トップス,ボトムス,シューズ,小物',
             'size' => 'required|in:S,M,L,XL,F',
-            'price' => 'required|string|max:10',
-            'stock' => 'required|integer|min:0|max:50',
-            'note' => 'nullable|string|max:300'
+            'material' => 'nullable|string|max:50',
+            'price' => 'required|integer|min:0|max:100000',
+            'stock' => 'required|integer|min:0|max:500',
+            'description' => 'nullable|string|max:500'
         ]);
 
         // 画像が変更された場合
@@ -93,9 +96,10 @@ class ItemController extends Controller
         $item->item_number = $request->item_number;
         $item->category = $request->category;
         $item->size = $request->size;
+        $item->material = $request->material;
         $item->price = $request->price;
         $item->stock = $request->stock;
-        $item->note = $request->note;
+        $item->description = $request->description;
         $item->save();
 
         return redirect('/items');

@@ -18,9 +18,10 @@ class Item extends Model
         'item_number',
         'category',
         'size',
+        'material',
         'price',
         'stock',
-        'note'
+        'description'
     ];
 
     /**

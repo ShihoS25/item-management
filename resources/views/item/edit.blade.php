@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="name">商品名</label>
+                            <label for="name">商品名（100文字まで）</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{ $item->name }}">
                         </div>
 
@@ -63,18 +63,23 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="material">素材</label>
+                            <input type="text" class="form-control" id="material" name="material" value="{{ $item->material }}">
+                        </div>
+
+                        <div class="form-group">
                             <label for="price">価格</label>
-                            <input type="text" class="form-control" id="price" name="price" value="{{ $item->price }}">
+                            <input type="number" min="0" max="100000" value="{{ $item->price }}" class="form-control" id="price" name="price">
                         </div>
 
                         <div class="form-group">
                             <label for="stock">在庫</label>
-                            <input type="number" min="0" max="50" class="form-control" id="stock" name="stock" value="{{ $item->stock }}">
+                            <input type="number" min="0" max="500" value="{{ $item->stock }}" class="form-control" id="stock" name="stock">
                         </div>
 
                         <div class="form-group">
-                            <label for="note">備考（300文字以内）</label><br>
-                            <textarea id="note" name="note" cols="75" rows="2" maxlength="300">{{ $item->note }}</textarea>
+                            <label for="description">商品説明（500文字まで）</label><br>
+                            <textarea id="description" name="description" cols="125" rows="2" maxlength="500">{{ $item->description }}</textarea>
                         </div>
                     </div>
 

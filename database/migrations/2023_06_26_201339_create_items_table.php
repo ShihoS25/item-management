@@ -20,9 +20,10 @@ return new class extends Migration
             $table->string('item_number', 10)->unique();
             $table->enum('category', ['アウター', 'トップス', 'ボトムス', 'シューズ', '小物'])->index();
             $table->enum('size', ['S', 'M', 'L', 'XL', 'F']);
-            $table->string('price', 10)->index();
+            $table->string('material', 50)->nullable();
+            $table->unsignedInteger('price')->index();
             $table->unsignedInteger('stock')->index();
-            $table->text('note', 300)->comment('備考')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

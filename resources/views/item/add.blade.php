@@ -29,8 +29,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="name">商品名<span class="badge badge-danger ml-2">必須</span></label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="100文字以内">
+                            <label for="name">商品名（100文字まで）<span class="badge badge-danger ml-2">必須</span></label>
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
 
                         <div class="form-group">
@@ -61,18 +61,23 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="material">素材</label>
+                            <input type="text" class="form-control" id="material" name="material">
+                        </div>
+
+                        <div class="form-group">
                             <label for="price">価格<span class="badge badge-danger ml-2">必須</span></label>
-                            <input type="text" class="form-control" id="price" name="price" placeholder="1,000,000">
+                            <input type="number" min="0" max="100000" value="10000" class="form-control" id="price" name="price">
                         </div>
 
                         <div class="form-group">
                             <label for="stock">在庫<span class="badge badge-danger ml-2">必須</span></label>
-                            <input type="number" min="0" max="50" value="50" class="form-control" id="stock" name="stock">
+                            <input type="number" min="0" max="500" value="500" class="form-control" id="stock" name="stock">
                         </div>
 
                         <div class="form-group">
-                            <label for="note">備考（300文字以内）</label><br>
-                            <textarea id="note" name="note" cols="75" rows="2" maxlength="300"></textarea>
+                            <label for="description">商品説明（500文字まで）</label><br>
+                            <textarea id="description" name="description" cols="125" rows="2" maxlength="500"></textarea>
                         </div>
                     </div>
 
