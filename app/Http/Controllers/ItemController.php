@@ -33,7 +33,7 @@ class ItemController extends Controller
                 'category' => 'required|in:アウター,トップス,ボトムス,シューズ,小物',
                 'size' => 'required|in:S,M,L,XL,F',
                 'material' => 'nullable|string|max:50',
-                'price' => 'required|integer|min:0|max:100000',
+                'price' => 'required|integer|min:0|max:20000',
                 'stock' => 'required|integer|min:0|max:500',
                 'description' => 'nullable|string|max:500'
             ]);
@@ -55,7 +55,7 @@ class ItemController extends Controller
                 'description' => $request->description,
             ]);
 
-            return redirect('/items');
+            return redirect('/items')->with('success', '登録が完了しました。');
         }
 
         return view('item.add');
@@ -70,6 +70,9 @@ class ItemController extends Controller
         return view('item.edit', compact('item'));
     }
 
+    /**
+     * 更新
+     */
     public function update(Request $request, $id)
     {
         $item = Item::findOrFail($id);
@@ -81,7 +84,7 @@ class ItemController extends Controller
             'category' => 'required|in:アウター,トップス,ボトムス,シューズ,小物',
             'size' => 'required|in:S,M,L,XL,F',
             'material' => 'nullable|string|max:50',
-            'price' => 'required|integer|min:0|max:100000',
+            'price' => 'required|integer|min:0|max:20000',
             'stock' => 'required|integer|min:0|max:500',
             'description' => 'nullable|string|max:500'
         ]);
@@ -102,16 +105,16 @@ class ItemController extends Controller
         $item->description = $request->description;
         $item->save();
 
-        return redirect('/items');
+        return redirect('/items')->with('success', '情報を更新しました。');
     }
 
     /**
      * 商品削除
      */
-    public function delete($id) {
+    public function delete($id)
+    {
         $item = Item::findOrFail($id);
         $item->delete();
-
         return redirect('/items')->with('success', '商品を削除しました。');
     }
 }

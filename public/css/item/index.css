@@ -1,0 +1,23 @@
+table {
+    text-align: center;
+    font-size: small;
+    font-weight: bolder;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+img {
+    height: 100px;
+}
+
+.bg-warning {
+    background-color: #ffeeba !important;
+}
+
+.longtxt {
+    font-size: x-small;
+    text-align: left;
+    white-space: normal;
+}

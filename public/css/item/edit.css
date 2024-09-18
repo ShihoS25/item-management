@@ -1,0 +1,13 @@
+.form-group-img {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+img {
+    height: 100px;
+}
+
+.form-group-img input {
+    margin-left: 10px;
+}

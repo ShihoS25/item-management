@@ -7,8 +7,14 @@
 @stop
 
 @section('content')
-    <div class="row justify-content-end mr-3">
-        <a href="{{ url('items/add') }}" class="btn btn-success mb-3">商品登録</a>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="row justify-content-end mr-2">
+        <a href="{{ url('items/add') }}" class="btn-sm btn-info mb-3">商品登録</a>
     </div>
 
     <div class="row">
@@ -36,17 +42,17 @@
                                 <tr class="{{ $item->stock <= 50 ? 'bg-warning' : '' }}">
                                     <td>{{ $item->id }}</td>
                                     <td><img src="data:image/jpeg;base64,{{ $item->image }}" alt="商品画像"></td>
-                                    <td class="item">{{ $item->name }}</td>
+                                    <td class="longtxt">{{ $item->name }}</td>
                                     <td>{{ $item->item_number }}</td>
                                     <td>{{ $item->category }}</td>
                                     <td>{{ $item->size }}</td>
                                     <td>{{ $item->material }}</td>
                                     <td>{{ number_format($item->price) }}円</td>
                                     <td>{{ $item->stock }}個</td>
-                                    <td class="item">{!!nl2br($item->description)!!}</td>
+                                    <td class="longtxt">{!!nl2br($item->description)!!}</td>
                                     <td>
                                         <a href="items/{{$item->id}}/edit" class="btn-primary btn-sm">編集</a>
-                                        <a href="items/{{$item->id}}/delete" class="btn-danger btn-sm">削除</a>
+                                        <a href="items/{{$item->id}}/delete" class="btn-danger btn-sm" onclick="return confirm('本当に削除しますか？')">削除</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -63,7 +69,7 @@
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/item/index.css">
 @stop
 
 @section('js')

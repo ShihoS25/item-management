@@ -19,13 +19,15 @@
                 </div>
             @endif
 
-            <div class="card card-primary">
-                <form method="post" enctype="multipart/form-data">
+            <div class="card card-primary w-75">
+                <form method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-                        <input type="hidden" class="form-control-file" id="id" name="id" value="{{ $item->id }}">
-
                         <div class="form-group">
+                            <input type="hidden" class="form-control-file" id="id" name="id" value="{{ $item->id }}">
+                        </div>
+
+                        <div class="form-group-img">
                             <img src="data:image/jpeg;base64,{{ $item->image }}" alt="商品画像">
                             <input type="file" class="form-control-file" id="image" name="image">
                         </div>
@@ -69,7 +71,7 @@
 
                         <div class="form-group">
                             <label for="price">価格</label>
-                            <input type="number" min="0" max="100000" value="{{ $item->price }}" class="form-control" id="price" name="price">
+                            <input type="number" min="0" max="20000" value="{{ $item->price }}" class="form-control" id="price" name="price">
                         </div>
 
                         <div class="form-group">
@@ -79,7 +81,7 @@
 
                         <div class="form-group">
                             <label for="description">商品説明（500文字まで）</label><br>
-                            <textarea id="description" name="description" cols="125" rows="2" maxlength="500">{{ $item->description }}</textarea>
+                            <textarea id="description" name="description" class="form-control" rows="3">{{ $item->description }}</textarea>
                         </div>
                     </div>
 
@@ -93,6 +95,7 @@
 @stop
 
 @section('css')
+<link rel="stylesheet" href="/css/item/edit.css">
 @stop
 
 @section('js')

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('items')->group(function () {
-        Route::get('/', [ItemController::class, 'index']);             // 商品一覧画面
-        Route::get('/add', [ItemController::class, 'add']);            // 商品登録画面
-        Route::post('/add', [ItemController::class, 'add']);           // 商品登録
-        Route::get('/{id}/edit', [ItemController::class, 'edit']);     // 商品編集画面
-        Route::post('/{id}/edit', [ItemController::class, 'update']);  // 商品編集
-        Route::get('/{id}/delete', [ItemController::class, 'delete']); // 商品削除
+        Route::get('/', [ItemController::class, 'index']);             // 一覧画面
+        Route::get('/add', [ItemController::class, 'add']);            // 登録画面
+        Route::post('/add', [ItemController::class, 'add']);           // 登録
+        Route::get('/{id}/edit', [ItemController::class, 'edit']);     // 編集画面
+        Route::post('/{id}/edit', [ItemController::class, 'update']);  // 更新
+        Route::get('/{id}/delete', [ItemController::class, 'delete']); // 削除
+    });
+
+    Route::prefix('search')->group(function () {
+        Route::get('/', [SearchController::class, 'index']);        // 検索画面
+        Route::get('/result', [SearchController::class, 'result']); // 検索結果
     });
 });
