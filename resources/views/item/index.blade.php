@@ -13,8 +13,10 @@
         </div>
     @endif
 
-    <div class="row justify-content-end mr-2">
-        <a href="{{ url('items/add') }}" class="btn-sm btn-info mb-3">商品登録</a>
+    <p>全<span>{{ $items->total() }}</span>件</p>
+
+    <div class="row justify-content-end mr-2 mb-3">
+        <a href="{{ url('items/add') }}" class="btn-sm btn-info">商品登録</a>
     </div>
 
     <div class="row">

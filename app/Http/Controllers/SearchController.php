@@ -17,27 +17,25 @@ class SearchController extends Controller
     }
 
     /**
-     * 検索結果出力
+     * 検索結果表示
      */
     public function result(Request $request)
     {
-        // 価格範囲の取得
         $priceRange = $request->input('priceRange', 20000);
-
-        // カテゴリの取得
         $selectedCategories = $request->input('categories', []);
+        $keyword = $request->input('keyword');
 
-        // 検索処理
-        $query = Auth::user()->items()
-            ->where('price', '<=', $priceRange);
+        $query = Auth::user()->items()->where('price', '<=', $priceRange);
 
-        // カテゴリが選択されている場合は絞り込む
         if (count($selectedCategories) > 0) {
             $query->whereIn('category', $selectedCategories);
         }
 
-        $items = $query->get();
+        if (isset($keyword)) {
+            $query->where('name', 'LIKE', '%'.$keyword.'%');
+        }
 
+        $items = $query->paginate(5);
         return view('search.index', compact('items'));
     }
 }

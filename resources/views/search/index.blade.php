@@ -39,13 +39,16 @@
         </div>
 
         <hr>
+        <input class="form-control form-control-sm w-25" type="text" name="keyword" id="keyword" placeholder="キーワード" value="{{ request()->input('keyword') }}">
+
+        <hr>
         <button type="submit" class="btn-secondary btn-sm">検索</button>
     </form>
     <br>
 
     <!-- 検索結果 -->
     @if (isset($items))
-    <p>{{ count($items) }}<span class="itemCount">件ヒットしました。</span></p>
+    <p><span>{{ $items->total() }}</span>件ヒットしました。</p>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -83,6 +86,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
     </div>
     @endif
 @stop
