@@ -293,14 +293,14 @@ return [
         [
             'text' => '商品一覧',
             'url'  => 'items',
-            'icon' => 'fas fa-home',
-            'icon_color' => 'red',
+            'icon' => 'fas fa-star',
+            'icon_color' => 'yellow',
         ],
         [
             'text' => '商品検索',
             'url' => 'items/search',
             'icon' => 'fas fa-search',
-            'icon_color' => 'yellow',
+            'icon_color' => 'green',
         ],
 
         // AdminLTEデフォルト

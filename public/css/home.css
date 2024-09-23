@@ -1,0 +1,32 @@
+.jumbotron {
+    background-image: url('../img/header.jpg');
+    background-size: cover;
+}
+
+.container h1 {
+    font-weight: bolder;
+    color: rgba(59, 12, 12, 0.678);
+}
+
+.container p {
+    font-weight: bolder;
+    color: rgba(59, 12, 12, 0.678);
+}
+
+.card {
+    background-image: url('../img/summer.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: rgba(59, 12, 12, 0.678);
+}
+
+i {
+    color: red;
+}
