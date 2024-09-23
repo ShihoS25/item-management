@@ -26,16 +26,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('items')->group(function () {
-        Route::get('/', [ItemController::class, 'index']);             // 一覧画面
-        Route::get('/add', [ItemController::class, 'add']);            // 登録画面
-        Route::post('/add', [ItemController::class, 'add']);           // 登録
-        Route::get('/{id}/edit', [ItemController::class, 'edit']);     // 編集画面
-        Route::post('/{id}/edit', [ItemController::class, 'update']);  // 更新
-        Route::get('/{id}/delete', [ItemController::class, 'delete']); // 削除
-    });
-
-    Route::prefix('search')->group(function () {
-        Route::get('/', [SearchController::class, 'index']);        // 検索画面
-        Route::get('/result', [SearchController::class, 'result']); // 検索結果
+        Route::get('/', [ItemController::class, 'index']);               // 一覧画面
+        Route::get('/add', [ItemController::class, 'add']);              // 登録画面
+        Route::post('/add', [ItemController::class, 'add']);             // 登録
+        Route::get('/{id}/edit', [ItemController::class, 'edit']);       // 編集画面
+        Route::post('/{id}/edit', [ItemController::class, 'update']);    // 更新
+        Route::get('/{id}/delete', [ItemController::class, 'delete']);   // 削除
+        Route::get('/search', [ItemController::class, 'search']);        // 検索画面
+        Route::get('/search/result', [ItemController::class, 'result']); // 検索結果
+        Route::get('/export', [ItemController::class, 'export']);        // CSV出力
     });
 });

@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>商品管理</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'img/fashion.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -294,11 +294,13 @@ return [
             'text' => '商品一覧',
             'url'  => 'items',
             'icon' => 'fas fa-home',
+            'icon_color' => 'red',
         ],
         [
             'text' => '商品検索',
-            'url' => 'search',
+            'url' => 'items/search',
             'icon' => 'fas fa-search',
+            'icon_color' => 'yellow',
         ],
 
         // AdminLTEデフォルト

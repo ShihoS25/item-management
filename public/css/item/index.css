@@ -1,7 +1,20 @@
+span {
+    font-size: medium;
+}
+
+/* searc.index.css共通 */
 table {
     text-align: center;
     font-size: small;
     font-weight: bolder;
+}
+
+th{
+    background-color: pink;
+}
+
+a {
+    color: black;
 }
 
 .table td {

@@ -1,6 +1,4 @@
-/**
- * 検索価格表示
- */
+// 検索価格表示 //
 const priceRange = document.getElementById('priceRange');
 const currentValue = document.getElementById('currentValue');
 

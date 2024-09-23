@@ -3,7 +3,7 @@
 @section('title', '商品一覧')
 
 @section('content_header')
-    <h1>商品一覧</h1>
+    <h1>商品一覧<span>（全{{ $items->total() }}件）</span></h1>
 @stop
 
 @section('content')
@@ -13,9 +13,7 @@
         </div>
     @endif
 
-    <p>全<span>{{ $items->total() }}</span>件</p>
-
-    <div class="row justify-content-end mr-2 mb-3">
+    <div class="row justify-content-end mr-2 mb-2">
         <a href="{{ url('items/add') }}" class="btn-sm btn-info">商品登録</a>
     </div>
 
@@ -29,13 +27,15 @@
                                 <th>ID</th>
                                 <th>商品画像</th>
                                 <th>商品名</th>
-                                <th>品番</th>
-                                <th>カテゴリー</th>
+                                <th>@sortablelink('item_number', '品番')</th>
+                                <th>@sortablelink('category', 'カテゴリー')</th>
                                 <th>サイズ</th>
                                 <th>素材</th>
-                                <th>価格</th>
-                                <th>在庫</th>
+                                <th>@sortablelink('price', '価格')</th>
+                                <th>@sortablelink('stock', '在庫')</th>
                                 <th>商品説明</th>
+                                <th>@sortablelink('created_at', '登録日')</th>
+                                <th>@sortablelink('updated_at', '更新日')</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -52,6 +52,8 @@
                                     <td>{{ number_format($item->price) }}円</td>
                                     <td>{{ $item->stock }}個</td>
                                     <td class="longtxt">{!!nl2br($item->description)!!}</td>
+                                    <td>{{ date_format($item->created_at, 'Y-m-d') }}</td>
+                                    <td>{{ date_format($item->updated_at, 'Y-m-d') }}</td>
                                     <td>
                                         <a href="items/{{$item->id}}/edit" class="btn-primary btn-sm">編集</a>
                                         <a href="items/{{$item->id}}/delete" class="btn-danger btn-sm" onclick="return confirm('本当に削除しますか？')">削除</a>
@@ -66,7 +68,7 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        {{ $items->links('pagination::bootstrap-4') }}
+        {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
     </div>
 @stop
 

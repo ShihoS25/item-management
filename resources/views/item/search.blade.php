@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="/search/result" method="GET">
+    <form action="/items/search/result" method="GET">
         @csrf
         <hr>
         <div class="form-group w-25">
@@ -37,9 +37,13 @@
             <input class="form-check-input" type="checkbox" id="category5" name="categories[]" value="小物" {{ in_array('小物', request()->input('categories', [])) ? 'checked' : '' }}>
             <label class="form-check-label" for="category5">小物</label>
         </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="lowStock" name="lowStock" value="在庫50以下" {{ request()->input('lowStock') ? 'checked' : '' }}>
+            <label class="form-check-label" for="lowStock">在庫50以下</label>
+        </div>
 
         <hr>
-        <input class="form-control form-control-sm w-25" type="text" name="keyword" id="keyword" placeholder="キーワード" value="{{ request()->input('keyword') }}">
+        <input class="form-control form-control-sm w-25" type="text" name="keyword" id="keyword" placeholder="キーワード、品番" value="{{ request()->input('keyword') }}">
 
         <hr>
         <button type="submit" class="btn-secondary btn-sm">検索</button>
@@ -47,8 +51,12 @@
     <br>
 
     <!-- 検索結果 -->
-    @if (isset($items))
-    <p><span>{{ $items->total() }}</span>件ヒットしました。</p>
+    @if(isset($items))
+    <div class="result row mb-2">
+        <p><span>{{ $items->total() }}</span>件ヒットしました。</p>
+        <a href="{{ url('items/export') }}" class="btn-sm btn-info">CSV出力</a>
+    </div>
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -56,20 +64,24 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>商品画像</th>
                                 <th>商品名</th>
-                                <th>品番</th>
-                                <th>カテゴリー</th>
+                                <th>@sortablelink('item_number', '品番')</th>
+                                <th>@sortablelink('category', 'カテゴリー')</th>
                                 <th>サイズ</th>
                                 <th>素材</th>
-                                <th>価格</th>
-                                <th>在庫</th>
+                                <th>@sortablelink('price', '価格')</th>
+                                <th>@sortablelink('stock', '在庫')</th>
                                 <th>商品説明</th>
+                                <th>@sortablelink('created_at', '登録日')</th>
+                                <th>@sortablelink('updated_at', '更新日')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
-                                <tr>
+                                <tr class="{{ $item->stock <= 50 ? 'bg-warning' : '' }}">
+                                    <td>{{ $item->id }}</td>
                                     <td><img src="data:image/jpeg;base64,{{ $item->image }}" alt="商品画像"></td>
                                     <td class="longtxt">{{ $item->name }}</td>
                                     <td>{{ $item->item_number }}</td>
@@ -79,6 +91,8 @@
                                     <td>{{ number_format($item->price) }}円</td>
                                     <td>{{ $item->stock }}個</td>
                                     <td class="longtxt">{!!nl2br($item->description)!!}</td>
+                                    <td>{{ date_format($item->created_at, 'Y-m-d') }}</td>
+                                    <td>{{ date_format($item->updated_at, 'Y-m-d') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -91,13 +105,13 @@
     <div class="d-flex justify-content-center">
         {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
     </div>
-    @endif
+    @endif  
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/search/index.css">
+<link rel="stylesheet" href="/css/item/search.css">
 @stop
 
 @section('js')
-<script src="/js/search/index.js"></script>
+<script src="/js/item/search.js"></script>
 @stop

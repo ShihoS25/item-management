@@ -1,13 +1,35 @@
 hr {
-    width: 28%;
+    width: 35%;
     margin-left: 0;
     text-align: left;
 }
 
+.result {
+    justify-content: space-between;
+    margin: auto;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.result a {
+    width: fit-content;
+}
+
+/* item.index.css共通 */
 table {
     text-align: center;
     font-size: small;
     font-weight: bolder;
+}
+
+th{
+    background-color: pink;
+}
+
+a {
+    color: black;
 }
 
 .table td {
