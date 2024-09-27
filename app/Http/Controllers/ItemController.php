@@ -19,7 +19,7 @@ class ItemController extends Controller
     // 商品一覧
     public function index()
     {
-        $items = Auth::user()->items()->sortable()->paginate(5);
+        $items = Auth::user()->items()->sortable()->latest()->paginate(5);
         return view('item.index', compact('items'));
     }
 
