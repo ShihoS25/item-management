@@ -487,10 +487,20 @@ return [
         'Sweetalert2' => [
             'active' => true,
             'files' => [
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@8',
+                // ],
                 [
                     'type' => 'js',
-                    'asset' => true,
-                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => false,
+                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.all.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11.4.19/dist/sweetalert2.min.css',
                 ],
             ],
         ],

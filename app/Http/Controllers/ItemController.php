@@ -71,7 +71,7 @@ class ItemController extends Controller
         ]);
 
         $this->ItemService->editItem($id, $request);
-        return redirect('/items')->with('success', '情報を更新しました。');
+        return redirect('/items')->with('success', '商品情報を更新しました。');
     }
 
     // 商品削除
@@ -79,7 +79,7 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $item->delete();
-        return redirect('/items')->with('success', '商品を削除しました。');
+        return redirect('/items')->with('success', '該当商品を削除しました。');
     }
 
     // 商品検索

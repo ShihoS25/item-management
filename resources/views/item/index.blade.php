@@ -8,9 +8,15 @@
 
 @section('content')
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'success',
+                    text: '{{ session('success') }}',
+                    confirmButtonText: 'OK'
+                });
+            });
+        </script>
     @endif
 
     <div class="row justify-content-end mr-2 mb-2">
@@ -56,7 +62,7 @@
                                     <td>{{ date_format($item->updated_at, 'Y-m-d') }}</td>
                                     <td>
                                         <a href="items/{{$item->id}}/edit" class="btn-primary btn-sm">編集</a>
-                                        <a href="items/{{$item->id}}/delete" class="btn-danger btn-sm" onclick="return confirm('本当に削除しますか？')">削除</a>
+                                        <a href="#" class="btn-danger btn-sm" onclick="confirmDelete({{$item->id}})">削除</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,7 +80,27 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/item/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.4.19/sweetalert2.min.css">
 @stop
 
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.4.19/sweetalert2.all.min.js"></script>
+<script>
+    function confirmDelete(itemId) {
+        Swal.fire({
+            title: "本当に削除しますか？",
+            text: "一度削除したデータは復元できません。",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "削除する",
+            cancelButtonText: "キャンセル"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `items/${itemId}/delete`;
+            }
+        });
+    }
+</script>
 @stop
