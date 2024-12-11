@@ -30,54 +30,56 @@
 
                         <div class="form-group">
                             <label for="name">商品名（100文字まで）<span class="badge badge-danger badge-pill ml-1">必須</span></label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
                         </div>
 
                         <div class="form-group">
                             <label for="item_number">品番<span class="badge badge-danger badge-pill ml-2">必須</span></label>
-                            <input type="text" class="form-control" id="item_number" name="item_number" placeholder="ABCD123456">
+                            <input type="text" class="form-control" id="item_number" name="item_number" placeholder="ABCD123456" value="{{old('item_number')}}">
                         </div>
 
                         <div class="form-group">
                             <label for="category">カテゴリー<span class="badge badge-danger badge-pill ml-2">必須</span></label>
                             <select class="form-control" name="category">
-                                <option value="アウター" selected>アウター</option>
-                                <option value="トップス">トップス</option>
-                                <option value="ボトムス">ボトムス</option>
-                                <option value="シューズ">シューズ</option>
-                                <option value="小物">小物</option>
+                                <option value="" {{ old('category') == '' ? 'selected' : '' }}>選択してください</option>
+                                <option value="アウター" {{ old('category') == 'アウター' ? 'selected' : '' }}>アウター</option>
+                                <option value="トップス" {{ old('category') == 'トップス' ? 'selected' : '' }}>トップス</option>
+                                <option value="ボトムス" {{ old('category') == 'ボトムス' ? 'selected' : '' }}>ボトムス</option>
+                                <option value="シューズ" {{ old('category') == 'シューズ' ? 'selected' : '' }}>シューズ</option>
+                                <option value="小物" {{ old('category') == '小物' ? 'selected' : '' }}>小物</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="size">サイズ<span class="badge badge-danger badge-pill ml-2">必須</span></label>
                             <select class="form-control" name="size">
-                                <option value="S" selected>S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="F">F</option>
+                                <option value="" {{ old('size') == '' ? 'selected' : '' }}>選択してください</option>
+                                <option value="S" {{ old('size') == 'S' ? 'selected' : '' }}>S</option>
+                                <option value="M" {{ old('size') == 'M' ? 'selected' : '' }}>M</option>
+                                <option value="L" {{ old('size') == 'L' ? 'selected' : '' }}>L</option>
+                                <option value="XL" {{ old('size') == 'XL' ? 'selected' : '' }}>XL</option>
+                                <option value="F" {{ old('size') == 'F' ? 'selected' : '' }}>F</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="material">素材</label>
-                            <input type="text" class="form-control" id="material" name="material">
+                            <input type="text" class="form-control" id="material" name="material" value="{{old('material')}}">
                         </div>
 
                         <div class="form-group">
                             <label for="price">価格<span class="badge badge-danger badge-pill ml-2">必須</span></label>
-                            <input type="number" min="0" max="20000" value="10000" class="form-control" id="price" name="price">
+                            <input type="number" min="0" max="20000" placeholder="10000" value="{{old('price')}}" class="form-control" id="price" name="price">
                         </div>
 
                         <div class="form-group">
                             <label for="stock">在庫<span class="badge badge-danger badge-pill ml-2">必須</span></label>
-                            <input type="number" min="0" max="500" value="500" class="form-control" id="stock" name="stock">
+                            <input type="number" min="0" max="500" value="{{old('stock', 500)}}" class="form-control" id="stock" name="stock">
                         </div>
 
                         <div class="form-group">
                             <label for="description">商品説明（500文字まで）</label><br>
-                            <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                            <textarea id="description" name="description" class="form-control" rows="3">{{old('description')}}</textarea>
                         </div>
                     </div>
 

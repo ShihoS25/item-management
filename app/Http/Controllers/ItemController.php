@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Item;
 use App\Services\ItemService;
 
@@ -27,7 +28,7 @@ class ItemController extends Controller
     public function add(Request $request)
     {
         if ($request->isMethod('post')) {
-            $this->validate($request, [
+            $validator = Validator::make($request->all(), [
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'name' => 'required|string|max:100',
                 'item_number' => 'required|string|max:10|unique:items',
@@ -38,6 +39,13 @@ class ItemController extends Controller
                 'stock' => 'required|integer|min:0|max:500',
                 'description' => 'nullable|string|max:500'
             ]);
+
+            if ($validator->fails()) {
+                if ($request->hasFile('image')) {
+                    $validator->errors()->add('image', '他の項目にエラーがあります。画像を再度選択してください。');
+                }
+                return back()->withErrors($validator)->withInput();
+            }
 
             $this->ItemService->createItem($request);
             return redirect('/items')->with('success', '登録が完了しました。');
