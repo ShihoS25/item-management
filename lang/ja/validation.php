@@ -150,6 +150,8 @@ return [
         'name' => '名前',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
+        'current_password' => '現在のパスワード',
+        'new_password' => '新しいパスワード',
         'image' => '画像',
         'item_number' => '品番',
         'category' => 'カテゴリー',

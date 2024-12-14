@@ -80,11 +80,9 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/item/index.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.4.19/sweetalert2.min.css">
 @stop
 
 @section('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.4.19/sweetalert2.all.min.js"></script>
 <script>
     function confirmDelete(itemId) {
         Swal.fire({

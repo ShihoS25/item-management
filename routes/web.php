@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +24,11 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    Route::get('/account', [AccountController::class, 'index']);
+    Route::post('/account', [AccountController::class, 'update']);
+    Route::get('/account/password', [AccountController::class, 'password']);
+    Route::post('/account/password', [AccountController::class, 'password']);
 
     Route::prefix('items')->group(function () {
         Route::get('/', [ItemController::class, 'index']);               // 一覧画面

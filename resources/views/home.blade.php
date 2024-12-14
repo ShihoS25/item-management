@@ -25,17 +25,19 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                    <h3 class="pt-5 mt-5 pb-5 display-6 lh-1 fw-bold"><a href="/items">商品一覧</a></h3>
+                    <h3 class="pt-5 mt-5 pb-5 display-6 lh-1 fw-bold"><a href="/account/password">パスワード変更</a></h3>
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                    <h3 class="pt-5 mt-5 pb-5 display-6 lh-1 fw-bold"><a href="/items/search">商品検索</a></h3>
+                    <h3 class="pt-5 mt-5 pb-5 display-6 lh-1 fw-bold"><a href="/account">アカウント設定</a></h3>
                 </div>
             </div>
         </div>
