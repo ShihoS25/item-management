@@ -20,7 +20,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body style="width: 100%; height: 100vh; background-image: url('../img/background.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
